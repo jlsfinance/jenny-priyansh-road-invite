@@ -21,6 +21,13 @@
 .controls{width:100%;max-width:370px;height:27px;display:flex;align-items:center;gap:12px}button{appearance:none;background:transparent;border:0;color:#6c5942;border-radius:30px;cursor:pointer;min-width:29px;height:29px;padding:5px;display:grid;place-items:center}button:hover{background:#9d8b6c18}button svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}button:focus-visible,input:focus-visible{outline:2px solid #9b8260;outline-offset:3px}#progress{height:3px;flex:1;min-width:30px;accent-color:#9e8765;cursor:pointer}#clock{font:9px system-ui,sans-serif;color:#8d806b;white-space:nowrap}.hint{font:9px system-ui,sans-serif;letter-spacing:1px;color:#948771;min-height:11px}
 body.render{display:block;background:none;min-height:0}.render .viewer{padding:0;width:720px;gap:0}.render .heading,.render .controls,.render .hint{display:none}.render .viewport{width:720px;height:1280px;box-shadow:none;outline:none}
 @media(max-width:500px){.viewer{padding:10px;gap:9px}.heading{max-width:360px;font-size:8px;letter-spacing:1.5px}.heading small{font-size:7px}.viewport{width:min(100%,calc((100svh - 100px)*.5625))}.controls{gap:9px}}
+@media(max-width:500px){
+ html{overflow-x:hidden}body{min-height:100dvh}
+ .viewer{width:100%;max-width:480px;min-height:100dvh;justify-content:center;gap:8px;padding:max(8px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))}
+ .viewport{flex-shrink:0;width:min(100%,calc((100dvh - 102px - env(safe-area-inset-top) - env(safe-area-inset-bottom))*.5625))}
+ .heading,.controls{width:min(100%,calc((100dvh - 102px - env(safe-area-inset-top) - env(safe-area-inset-bottom))*.5625));max-width:none}
+ .controls{height:32px;gap:10px}button{min-width:32px;height:32px}.hint{font-size:10px}
+}
 </style></head><body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><filter id="jp-ink" color-interpolation-filters="sRGB"><feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 .24 0 0 0 0 .15 0 0 0 0 .10 -.333 -.333 -.333 0 1" result="ink"/><feComponentTransfer in="ink" result="bold"><feFuncA type="linear" slope="1.7"/></feComponentTransfer><feComposite in="bold" in2="SourceAlpha" operator="in"/></filter></defs></svg>
 <main class="viewer"><header class="heading"><span>Jenny &amp; Priyansh</span><small>Save the date</small></header>
@@ -50,7 +57,7 @@ function syncVideos(t){for(const v of videos){v.muted=true;const start=Number(v.
 videos.forEach(v=>v.addEventListener('loadedmetadata',()=>syncVideos(time)));
 function typed(text,t,start,duration){return text.slice(0,Math.floor(fade(t,start,duration)*(text.length+1)))}
 function draw(t){time=clamp(t,0,DUR);opacity('crest',fade(time,.35,.8));opacity('names',fade(time,.9,.8));$('everyone-one').textContent=typed('EVERYONE',time,2.0,.55);$('everyone-two').textContent=typed('IS GETTING MARRIED',time,2.6,1.0);opacity('everyone',1-fade(time,4.15,.5));$('turn').textContent=typed("NOW IT’S OUR TURN...",time,4.43,.77);opacity('turn',1-fade(time,6.1,.3));opacity('save-date',fade(time,8.633,1.1));letters.forEach((e,i)=>{const p=fade(time,10.08+i*.055,.42);e.style.opacity=p;e.style.transform=`translate(${Math.sin(i*7)*(1-smooth(p))*22}px,${(i%2?18:-20)*(1-smooth(p))}px) rotate(${(i%2?-9:9)*(1-p)}deg)`});const hp=fade(time,10.45,.6);opacity('day-heart',hp);$('day-heart').style.transform=`scale(${.7+.3*smooth(hp)})`;$('day').textContent=time<11.45?Math.min(DETAILS.day,3+Math.floor(Math.max(0,time-10.8)*20)):DETAILS.day;opacity('venue',fade(time,11.7,.7));progress.value=time;$('clock').textContent=`0:${String(Math.floor(time)).padStart(2,'0')} / 0:14`;syncVideos(time)}
-function resize(){$('stage').style.transform=`scale($('viewport').getBoundingClientRect().width/720)`}new ResizeObserver(resize).observe($('viewport'));
+function resize(){$('stage').style.transform=`scale(${$('viewport').getBoundingClientRect().width/720})`}new ResizeObserver(resize).observe($('viewport'));
 function syncAudio(){if(sound){music.currentTime=Math.min(time,music.duration||DUR);if(playing)music.play().catch(()=>{$('hint').textContent='Tap the speaker to start music'})}}
 function setPlaying(value){playing=value;last=null;$('play-icon').setAttribute('d',playing?'M9 5v14M15 5v14':'m8 4 12 8-12 8Z');$('play').setAttribute('aria-label',playing?'Pause invitation':'Play invitation');if(playing)syncAudio();else music.pause();syncVideos(time)}
 function seek(t){draw(t);last=null;syncAudio()}

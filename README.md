@@ -2,7 +2,7 @@
 
 Open `index.html` in a browser. It is a self-contained, 14-second portrait invitation with playback, seeking and optional music. Rebuild with `node build.mjs` after editing `template.html` or the assets.
 
-Personalization: Jenny & Priyansh, authentic JP floral crest, 16 February 2026, Arawali Ananta Elite · Ranakpur. The photographic heads are 80% of the first version, anchored at the collar. Cartoon bodies, entrances, heart burst and birds retain motion extracted from the supplied reference.
+Personalization: Jenny & Priyansh, authentic JP floral crest, 16 February 2026, Arawali Ananta Elite · Ranakpur. The photographic heads are 68% of the first version (15% smaller than the previous revision), aligned individually to each costume's collar. Mobile layout fits the current viewport height and safe areas, with aligned playback controls. Cartoon bodies, entrances, heart burst and birds retain motion extracted from the supplied reference.
 
 The reference was examined at all 420 frames (720 × 1280, 30 fps). Source sheets and analysis remain in the local analysis folder. Browser verification checks eight animation times, continuous playback, names/date/logo/fonts, replay, music control and mobile overflow.
 

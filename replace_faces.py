@@ -2,7 +2,7 @@ from pathlib import Path
 import cv2,numpy as np,json,subprocess
 from PIL import Image,ImageDraw,ImageFilter
 ROOT=Path(__file__).resolve().parent
-ASSETS=ROOT/'assets'; OUT=ROOT/'analysis'/'face-review';OUT.mkdir(exist_ok=True)
+ASSETS=ROOT/'assets'; OUT=ROOT/'analysis'/'face-review';OUT.mkdir(parents=True,exist_ok=True)
 VIDEO=r'C:\Users\Admin\.codex\codex-remote-attachments\01a1f958-f61d-79e3-ad6f-412a6a0f06fe\940C43EF-ADDE-4D5C-8B18-B4C2D68EDB5C\1-Video-24639.mp4'
 SHEET=Path(r'C:\Users\Admin\.codex\generated_images\01a1f958-f61d-79e3-ad6f-412a6a0f06fe\exec-f94551c9-5ccc-4006-8e68-7b50d630d4fa.png')
 sheet=Image.open(SHEET).convert('RGBA')
@@ -80,11 +80,13 @@ try:
   for name,d in frame_states.items():
    if not d['visible']:continue
    # Keep the neck attached while reducing the oversized photographic head.
-   scale=.80
+   scale=.68
    width=round((d['w']+8)*scale);height=round((d['h']+5)*scale)
    im=sprites[name][d['state']].resize((width,height),Image.Resampling.LANCZOS)
-   left=round(d['x']+d['w']/2-width/2)
-   top=round(d['y']+d['h']+3-height)
+   # Align the chin to each costume's neckline, rather than to its hair bounds.
+   neck_offset=5 if name=='jenny' else -9
+   left=round(d['x']+d['w']/2-width/2+neck_offset)
+   top=round(d['y']+d['h']+4-height)
    canvas.paste(im,(left,top),im)
   states.append(frame_states)
   if n in [6,9,12,18,30,90,150,200,225,270,330,390]:

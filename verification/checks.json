@@ -57,12 +57,46 @@
     }
   ],
   "moving": {
-    "time": 7.8773,
+    "time": 8.0072,
     "playing": true
   },
   "mobile": {
     "overflow": false
   },
+  "mobileSizes": [
+    {
+      "width": 320,
+      "height": 568,
+      "overflow": false,
+      "cardVisible": true,
+      "controlsVisible": true,
+      "aligned": true
+    },
+    {
+      "width": 360,
+      "height": 640,
+      "overflow": false,
+      "cardVisible": true,
+      "controlsVisible": true,
+      "aligned": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "cardVisible": true,
+      "controlsVisible": true,
+      "aligned": true
+    },
+    {
+      "width": 430,
+      "height": 932,
+      "overflow": false,
+      "cardVisible": true,
+      "controlsVisible": true,
+      "aligned": true
+    }
+  ],
   "replay": true,
   "music": "Turn music off",
   "errors": []
