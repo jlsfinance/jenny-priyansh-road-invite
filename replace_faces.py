@@ -1,23 +1,14 @@
+from bisect import bisect_right
 from pathlib import Path
-import cv2,numpy as np,json,subprocess
+import cv2,numpy as np,json,subprocess,sys
 from PIL import Image,ImageDraw,ImageFilter
 ROOT=Path(__file__).resolve().parent
 ASSETS=ROOT/'assets'; OUT=ROOT/'analysis'/'face-review';OUT.mkdir(parents=True,exist_ok=True)
-VIDEO=r'C:\Users\Admin\.codex\codex-remote-attachments\01a1f958-f61d-79e3-ad6f-412a6a0f06fe\940C43EF-ADDE-4D5C-8B18-B4C2D68EDB5C\1-Video-24639.mp4'
-SHEET=Path(r'C:\Users\Admin\.codex\generated_images\01a1f958-f61d-79e3-ad6f-412a6a0f06fe\exec-f94551c9-5ccc-4006-8e68-7b50d630d4fa.png')
+VIDEO=r'C:\Users\Admin\.codex\codex-remote-attachments\01a1f958-f61d-79e3-ad6f-412a6a0f06fe\4078B47B-C346-4CD7-BBC1-85DBF2880A4D\1-Video-24639.mp4'
 FIT_REFERENCE=Path(r'C:\Users\Admin\.codex\codex-remote-attachments\01a1f958-f61d-79e3-ad6f-412a6a0f06fe\E1255FF7-43E7-4454-ACD5-E4D2D3BB7AC3\1-Photo-1.jpg')
-sheet=Image.open(SHEET).convert('RGBA')
-sprites={}
-for row,name in enumerate(['jenny','priyansh']):
- cells=[sheet.crop((col*512,row*512,(col+1)*512,(row+1)*512)) for col in range(3)]
- bounds=[]
- for im in cells:
-  alpha=im.getchannel('A').point(lambda x:0 if x<38 else min(255,round((x-38)*255/216)))
-  im.putalpha(alpha);bounds.append(alpha.getbbox())
- box=(min(b[0] for b in bounds),min(b[1] for b in bounds),max(b[2] for b in bounds),max(b[3] for b in bounds))
- sprites[name]=[]
- for state,im in zip(['smile','wink','surprised'],cells):
-  im=im.crop(box);im.save(ASSETS/f'{name}-{state}.png');sprites[name].append(im)
+sprites={name:[Image.open(ASSETS/f'{name}-{state}.png').convert('RGBA')
+               for state in ('smile','wink','surprised')]
+         for name in ('jenny','priyansh')}
 
 ref=cv2.imread(str(ROOT/'analysis'/'frame-12.png'))
 boxes={'jenny':(94,548,190,244),'priyansh':(448,502,183,230)}
@@ -45,36 +36,45 @@ for n in range(4,14):
 print('Entrance tracking:',json.dumps([{'f':i,**tracks[i]} for i in range(0,24,2)]),flush=True)
 (OUT/'tracking-raw.json').write_text(json.dumps(tracks),encoding='utf8')
 
-# Explicit beats avoid the old classifier holding surprise for the last 7.5s.
-expression_beats={
- 'jenny':[(0,0),(1.1,1),(1.5,0),(2.5,2),(3.3,0),(4.4,1),(4.8,0),(5.7,2),(6.6,0),(7.8,1),(8.2,2),(9.1,0),(10.2,1),(10.6,0),(11.7,2),(12.6,0),(13.3,2)],
- 'priyansh':[(0,0),(1.7,1),(2.1,0),(3.1,2),(3.9,0),(5.0,1),(5.4,0),(6.3,2),(7.1,0),(8.4,1),(8.8,0),(9.5,2),(10.3,0),(11.1,1),(11.5,0),(12.1,2),(12.8,0)]
-}
-def expression_at(name,t):
- return next(state for start,state in reversed(expression_beats[name]) if t>=start)
+# Compare the source expression area against the visually confirmed poses at
+# frames 37, 45 and 201. Both characters switch together on these source frames.
+smile_wink_frames=(22,32,43,54,64,75,86,97,108,118,129,140,151,162,172,183)
+surprise_smile_frames=(196,206,216,225,234,243,252,262,270,280,289,299,
+                       308,318,327,337,346,356,365,377,384,394,403,413)
+
+def expression_at(frame):
+ if frame < surprise_smile_frames[0]:
+  return bisect_right(smile_wink_frames,frame)%2
+ return 2 if bisect_right(surprise_smile_frames,frame)%2 else 0
 
 background=Image.open(ROOT/'analysis'/'frame-0.png').convert('RGB')
 
-# Take the neckline and collar together from the alignment photo so the neck
-# follows the actual U-shaped shirt opening. The face sprites are kept intact.
+# Build the full upper neckline as one plate, including both shoulder caps.
+# Keep the original moving hand and cup above this plate as foreground.
 fit_photo=Image.open(FIT_REFERENCE).convert('RGB')
-neck_box=(214,704,356,772)
+neck_box=(193,704,363,779)
 neckline=fit_photo.crop(neck_box)
 neck_alpha=Image.new('L',neckline.size)
-outline=[(253,705),(299,705),(304,717),(318,727),(335,725),
-         (345,733),(353,753),(349,765),(316,764),(248,760),
-         (245,750),(242,741),(233,734),(244,726),(248,721)]
+outline=[(253,705),(299,705),(306,718),(318,726),(333,725),
+         (345,733),(353,752),(355,764),(347,774),(251,774),
+         (245,757),(239,747),(223,738),(220,732),(243,728),(248,721)]
 ImageDraw.Draw(neck_alpha).polygon([(x-neck_box[0],y-neck_box[1]) for x,y in outline],fill=255)
-neckline.putalpha(neck_alpha.filter(ImageFilter.GaussianBlur(2.0)))
-neckline=neckline.resize((122,57),Image.Resampling.LANCZOS)
+neck_fade=np.clip((neck_box[3]-1-np.arange(neck_box[1],neck_box[3]))/15,0,1)[:,None]
+neckline.putalpha(Image.fromarray(np.round(np.asarray(neck_alpha.filter(ImageFilter.GaussianBlur(1.1)))*neck_fade).astype(np.uint8)))
+neckline=neckline.resize((171,71),Image.Resampling.LANCZOS)
+
+preview='--preview' in sys.argv
+preview_frames={18,24,30,37,45,90,150,200,215,270,330,390,410}
 
 cap=cv2.VideoCapture(VIDEO)
-ff=subprocess.Popen(['ffmpeg','-hide_banner','-loglevel','error','-f','rawvideo','-pix_fmt','rgb24','-s','720x800','-r','30','-i','-','-an','-c:v','libx264','-preset','medium','-crf','20','-pix_fmt','yuv420p','-movflags','+faststart','-y',str(ASSETS/'personalized-couple.mp4')],stdin=subprocess.PIPE)
+ff=None if preview else subprocess.Popen(['ffmpeg','-hide_banner','-loglevel','error','-f','rawvideo','-pix_fmt','rgb24','-s','720x800','-r','30','-i','-','-an','-c:v','libx264','-preset','medium','-crf','20','-pix_fmt','yuv420p','-movflags','+faststart','-y',str(ASSETS/'personalized-couple.mp4')],stdin=subprocess.PIPE)
 diagnostics=[];states=[]
 try:
  for n,tr in enumerate(tracks):
   ok,f=cap.read();assert ok
+  if preview and n not in preview_frames:continue
   canvas=Image.fromarray(cv2.cvtColor(f,cv2.COLOR_BGR2RGB))
+  original=canvas.copy()
   mask=Image.new('L',(720,1280));draw=ImageDraw.Draw(mask)
   frame_states={}
   for name,(bx,by,w,h) in boxes.items():
@@ -83,7 +83,9 @@ try:
    # Match the original head silhouette; replace the underlying pixels with its clean backdrop.
    poly=[(.16,.03),(.48,-.02),(.84,.02),(1.06,.23),(1.06,.86),(.75,.96),(.22,.96),(-.02,.84),(-.03,.29)] if name=='jenny' else [(.12,.02),(.49,-.02),(.9,.04),(1.03,.28),(1.01,.65),(.85,.81),(.61,.91),(.35,.91),(.04,.79),(-.03,.30)]
    draw.polygon([(int(x+px*w),int(y+py*h)) for px,py in poly],fill=255)
-   state=expression_at(name,n/30)
+   if name=='jenny':
+    draw.polygon([(x+18,y+222),(x+170,y+213),(x+183,y+242),(x+16,y+241)],fill=255)
+   state=expression_at(n)
    frame_states[name]={'visible':True,'x':x,'y':y,'w':w,'h':h,'state':state,'score':score}
   mask=mask.filter(ImageFilter.GaussianBlur(1.0));canvas.paste(background,(0,0),mask)
   for name,d in frame_states.items():
@@ -103,9 +105,16 @@ try:
    top=round(d['y']+d['h']-2-height)
    if name=='jenny':
     top-=13
-    neck_left=round(left+width/2-54)
-    neck_top=round(d['y']+d['h']-32)
+    neck_left=round(left+width/2-85)
+    neck_top=round(d['y']+d['h']-42)
     canvas.paste(neckline,(neck_left,neck_top),neckline)
+    x,y=d['x'],d['y']
+    foreground=Image.new('L',(720,1280))
+    cup_and_hand=[(30,265),(34,249),(42,232),(49,228),(56,225),
+                  (60,218),(64,217),(75,217),(75,234),(72,246),
+                  (61,250),(55,256),(49,262)]
+    ImageDraw.Draw(foreground).polygon([(x+px,y+py) for px,py in cup_and_hand],fill=255)
+    canvas.paste(original,(0,0),foreground.filter(ImageFilter.GaussianBlur(.65)))
     # Fade only the very bottom of the sprite neck into the photographed collar.
     # The face, jaw and hair retain their original pixels above this narrow join.
     alpha=np.array(im.getchannel('A'),dtype=np.float32)
@@ -114,15 +123,18 @@ try:
     im.putalpha(Image.fromarray(np.round(alpha*(1-rows*center)).astype(np.uint8)))
    canvas.paste(im,(left,top),im)
   states.append(frame_states)
-  if n in [6,9,12,18,30,90,150,200,225,270,330,390]:
+  if n in preview_frames:
    canvas.save(OUT/f'face-frame-{n:03d}.jpg',quality=95)
    diagnostics.append(canvas.resize((180,320)))
-  ff.stdin.write(canvas.crop((0,480,720,1280)).tobytes())
+  if ff:ff.stdin.write(canvas.crop((0,480,720,1280)).tobytes())
 finally:
- cap.release();ff.stdin.close();rc=ff.wait()
- if rc:raise RuntimeError('Face animation encoding failed')
-contact=Image.new('RGB',(180*4,350*3),'white');d=ImageDraw.Draw(contact)
+ cap.release()
+ if ff:
+  ff.stdin.close()
+  if ff.wait():raise RuntimeError('Face animation encoding failed')
+contact=Image.new('RGB',(180*4,350*((len(diagnostics)+3)//4)),'white')
 for i,im in enumerate(diagnostics):contact.paste(im,((i%4)*180,(i//4)*350+25))
 contact.save(OUT/'face-contact.jpg',quality=95)
+if preview:sys.exit(0)
 (ASSETS/'face-motion.json').write_text(json.dumps(states,separators=(',',':')),encoding='utf8')
 print('Personalised all 420 frames with photo-based head variants; output:',ASSETS/'personalized-couple.mp4')

@@ -5,7 +5,7 @@ from PIL import Image,ImageDraw
 root=Path(__file__).resolve().parent
 tracks=json.loads((root/'assets/face-motion.json').read_text())
 cap=cv2.VideoCapture(str(root/'assets/personalized-couple.mp4'))
-samples={'jenny':[30,36,84],'priyansh':[30,57,105]}
+samples={'jenny':[37,45,201],'priyansh':[37,45,201]}
 contact=Image.new('RGB',(360,340),'#f5f0e5');draw=ImageDraw.Draw(contact)
 report={}
 for row,(name,frames) in enumerate(samples.items()):
@@ -15,7 +15,7 @@ for row,(name,frames) in enumerate(samples.items()):
   tr=tracks[n][name];x,y=tr['x'],tr['y']-480
   if name=='jenny':
    crop=frame[y+80:y+250,x+30:x+160]
-   b,g,r=map(int,frame[y+235,x+100]);neck_samples.append([r,g,b])
+   b,g,r=map(int,frame[y+226,x+100]);neck_samples.append([r,g,b])
    assert r>g+15 and g>b+10 and r<235,('Jenny neck missing',n,[r,g,b])
   else:crop=frame[y+70:y+220,x+25:x+155]
   crop=cv2.resize(crop,(110,140));crops.append(crop.astype(float))
