@@ -24,7 +24,13 @@ rea-video survey, decompose, review and apply-review were run on Video-8684.mp4.
 | 32.3–42 s | Black-gold sangeet card | 15 February, 7 pm, Ranakpur venue |
 | 42–51 s | Blue closing with lanterns and fireworks | JP and Jenny & Priyansh |
 
-The recreation uses separate cropped illustration assets, editable HTML text, the latest complete floral wedding crest (border, flowers and name ribbon) from this repository's `logo` branch, and deterministic canvas effects. The logo is toned to sage/ivory on the watercolor scene and warm ivory/gold on the blue closing, with a soft animated reveal. It does not play the original full-frame video under replacement text. The reference's illustrated people remain decorative illustrations and are not photos of Jenny and Priyansh. Typography, watercolor transitions, sparks and fireworks are approximations of the reference, not a claim that its exact source fonts or animation project were recovered.
+The recreation uses separate cropped illustration assets, editable HTML text, the latest complete floral wedding crest (border, flowers and name ribbon) from this repository's `logo` branch, and deterministic canvas effects. The logo is toned to sage/ivory on the watercolor scene and warm ivory/gold on the blue closing, with a soft animated reveal. It does not play the original full-frame video under replacement text. The reference's illustrated people remain decorative illustrations and are not photos of Jenny and Priyansh. Typography, watercolor transitions and closing fireworks are approximations of the reference, not a claim that its exact source fonts or animation project were recovered.
+
+### Restored reference motion
+
+The wedding couple's hands, drapery and the original scene movement are retained in a cropped animated artwork layer (source frames 545–802, lower 804 pixels). The sangeet floor fog, cold-fire jets and couple motion use a separate lower 640-pixel crop; its hanging lights use a top 270-pixel crop. These silent H.264 layers retain 24 fps and align to source times 22.708333 and 32.291667 seconds. All original event text is outside the crops; the personalised date, venue and names remain HTML.
+
+The shared clock controls the layers during playback, pause, chapter navigation and backward/forward seeking. Four reference comparisons at 26.5, 28.5, 36.5 and 38.5 seconds had average pixel errors of 2.2–5.9 on a 0–255 scale in the hands/fog/sparks regions. The earlier generic cold-fire particle approximation was removed.
 
 The classifier's AI provenance guesses are uncertain: the visual review supports a composited motion invitation, but cannot establish how individual illustrations were created. The original supplied soundtrack is preserved; no claim is made about its source. Audio separation, OCR and automatic packaging detection were skipped because the soundtrack was reused and the source text and layout were manually inspected.
 
