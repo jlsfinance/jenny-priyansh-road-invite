@@ -6,6 +6,8 @@ Personalization: Jenny & Priyansh, authentic JP floral crest, 16 February 2026, 
 
 Expressions follow explicit, independent smile/wink/surprise beats throughout the 14 seconds. This replaces a pixel classifier that previously held the surprised expression for the final 7.5 seconds. Playback loops automatically. Body motion is from the reference; facial expression timing is reconstructed.
 
+Jenny's head was reduced a further 17% after the photo comparison, to approximately 100 × 125 pixels on the 720-pixel-wide canvas, with its lower edge fixed at the neckline. Priyansh's dimensions remain unchanged in this adjustment.
+
 The reference was examined at all 420 frames (720 × 1280, 30 fps). Source sheets and analysis remain in the local analysis folder. Browser verification checks eight animation times, continuous playback, names/date/logo/fonts, replay, music control and mobile overflow.
 
 ## Face asset provenance

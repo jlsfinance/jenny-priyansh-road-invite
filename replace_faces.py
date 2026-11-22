@@ -79,7 +79,7 @@ try:
    alpha=np.asarray(source.getchannel('A'))>160
    ys=np.flatnonzero(alpha.sum(axis=1)>12);xs=np.flatnonzero(alpha.sum(axis=0)>12)
    source=source.crop((int(xs[0]),int(ys[0]),int(xs[-1])+1,int(ys[-1])+1))
-   height=round((d['h']+5)*(.60 if name=='jenny' else .64))
+   height=round((d['h']+5)*(.50 if name=='jenny' else .64))
    width=round(height*source.width/source.height)
    im=source.resize((width,height),Image.Resampling.LANCZOS)
    # Align the chin to each costume's neckline, rather than to its hair bounds.
