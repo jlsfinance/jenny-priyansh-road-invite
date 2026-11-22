@@ -1,107 +1,110 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#101a15">
-<title>Jenny &amp; Priyansh · Save the Date</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#e9ede6"><title>Jenny &amp; Priyansh · Two States, One Forever</title>
 <style>
-@font-face{font-family:Invitation;src:url('{{SERIF}}') format('truetype');font-weight:300 700;font-display:block}
-@font-face{font-family:Signature;src:url('{{SCRIPT}}') format('truetype');font-display:block}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#101a15;color:#fff9ea}body{font-family:system-ui,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100svh;background:radial-gradient(ellipse at 50% 35%,#28372b,#101a15 75%)}
-.viewer{width:min(100%,500px);padding:16px 18px 18px;display:flex;align-items:center;flex-direction:column;gap:13px}
-.heading{width:100%;display:flex;justify-content:space-between;align-items:center;color:#d5cdb7;font-size:10px;letter-spacing:2.2px;text-transform:uppercase}.heading span:last-child{font-size:9px;opacity:.55;letter-spacing:1.8px}
-.viewport{position:relative;width:min(100%,calc((100svh - 119px)*.5625));aspect-ratio:9/16;overflow:hidden;box-shadow:0 16px 80px #0009;outline:1px solid #c5a66940;background:#9b8668}
-#stage{position:absolute;top:0;left:0;width:720px;height:1280px;overflow:hidden;transform-origin:0 0;isolation:isolate}
-.scenery{position:absolute;inset:0;background:url('{{ROAD}}') center/720px 1280px no-repeat}
-.copy{position:absolute;left:199px;width:332px;text-align:center;color:#fffdf1;font-family:Invitation,Georgia,serif;font-weight:400;font-variant-numeric:lining-nums;z-index:3;opacity:0;will-change:opacity}
-#script-mask{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
-#save-date{position:absolute;left:360px;top:845px;width:740px;margin-left:-370px;height:150px;margin-top:-75px;transform:rotate(90deg);text-align:center;white-space:nowrap;font-family:Signature,cursive;font-size:116px;font-weight:400;line-height:1.3;color:#fffdf1;text-shadow:2px 3px 2px #0005}
-#car{position:absolute;left:258px;top:0;width:216px;height:462px;z-index:5;will-change:transform;pointer-events:none}
-#date{top:302px;font-size:68px;line-height:.92;letter-spacing:-2px;font-weight:400}#date .day{font-size:65px;white-space:nowrap;letter-spacing:-2.4px}#date .month{font-size:65px}#date .year{font-size:70px}
-#message{top:532px;font-family:'Times New Roman',serif;font-style:italic;font-size:23px;line-height:25.5px;font-weight:bold;left:201px;width:326px;letter-spacing:-.3px}
-#bride{top:653px;font-size:65px;line-height:1.05;text-transform:uppercase}#amp{top:726px;font-size:65px;line-height:1.05;font-style:italic}#groom{top:799px;font-size:65px;line-height:1.05;text-transform:uppercase;letter-spacing:-1px}
-#venue{top:893px;font-size:18.5px;line-height:25px;font-weight:600;letter-spacing:.1px;text-transform:uppercase}#closing{top:970px;font-size:17px;line-height:24px;font-weight:600;white-space:nowrap;letter-spacing:.05px}#heart{top:1015px;font-family:Georgia,serif;font-size:43px;line-height:1}
-.controls{width:100%;max-width:360px;display:flex;gap:14px;align-items:center;height:30px}button{appearance:none;border:0;background:transparent;color:#eee4cf;cursor:pointer;border-radius:50%;width:30px;height:30px;display:grid;place-items:center;padding:5px;flex-shrink:0}button:hover{background:#ffffff13}button:focus-visible,input:focus-visible{outline:2px solid #d9bd80;outline-offset:4px}button svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}.progress{flex:1;min-width:30px;accent-color:#d4bc89;height:3px;cursor:pointer}#clock{font-size:9px;font-variant-numeric:tabular-nums;letter-spacing:.6px;color:#b8b09b;min-width:49px;white-space:nowrap}.hint{font-size:9px;color:#a6a38e;letter-spacing:1px;min-height:12px;margin-top:-8px}
-body.render{background:none;display:block;min-height:0}.render .viewer{padding:0;width:720px;gap:0}.render .heading,.render .controls,.render .hint{display:none}.render .viewport{width:720px;height:1280px;box-shadow:none;outline:0}
-@media(max-width:500px){.viewer{padding:10px 12px 12px;gap:10px}.viewport{width:min(100%,calc((100svh - 105px)*.5625))}.heading{max-width:360px;font-size:9px}.heading span:last-child{font-size:8px}.controls{gap:10px}}
-@media(prefers-reduced-motion:reduce){button{scroll-behavior:auto}}
+@font-face{font-family:Invitation;src:url('assets/serif.ttf') format('truetype');font-weight:300 700;font-display:block}
+@font-face{font-family:Calligraphy;src:url('assets/script.ttf') format('truetype');font-display:block}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#e8ede7;color:#42503e}body{font-family:Invitation,Georgia,serif;min-height:100svh;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 35%,#f8f8f2,#dce4dc)}
+.viewer{display:flex;flex-direction:column;align-items:center;gap:11px;width:min(100%,480px);padding:15px 14px}
+.heading{width:100%;display:flex;align-items:center;justify-content:space-between;max-width:390px;text-transform:uppercase;font:10px/1.5 system-ui,sans-serif;letter-spacing:2px;color:#6f786a}.heading small{font-size:8px;letter-spacing:1.4px}
+.viewport{position:relative;overflow:hidden;width:min(100%,calc((100svh - 149px)*.5625));aspect-ratio:9/16;background:#e7ece7;box-shadow:0 12px 50px #45534326;outline:1px solid #84977725}
+#stage{width:720px;height:1280px;position:absolute;top:0;left:0;transform-origin:0 0;overflow:hidden;isolation:isolate;background:#e8eff0}
+.scene{position:absolute;inset:0;overflow:hidden;opacity:0;pointer-events:none}.scene img{position:absolute;display:block}.paper{position:absolute;inset:0;background:url('assets/watercolor-paper.webp') center/720px 1280px}.paper:after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 44%,#fffffff5 0%,#ffffffa6 37%,#96c4ce22 82%)}
+.hills{position:absolute;bottom:0;left:0;width:720px;height:198px}.left-leaves{left:0;top:0;width:115px;height:195px}.right-leaves{right:0;top:312px;width:89px;height:248px}
+.line{text-align:center;position:absolute;left:45px;width:630px;opacity:0;color:#302324;font-weight:500;line-height:1.25}.script{font-family:Calligraphy,cursive;font-weight:400}.label{font:17px/1.3 Invitation,Georgia,serif;letter-spacing:3.5px;text-transform:uppercase}.route{position:absolute;inset:0;width:720px;height:1280px;pointer-events:none}.state-map{opacity:.72}
+#origins-art{position:absolute;inset:0;will-change:transform}.palace{left:165px;top:25px;width:555px;height:310px}.temple{left:0;top:600px;width:290px;height:580px}.rajasthan-map{left:330px;top:270px;width:275px;height:270px;opacity:.33}.gujarat-map{left:90px;top:797px;width:340px;height:270px;opacity:.63}
+#rajasthan-label{top:339px;left:205px;width:420px;color:#b37855;font-size:91px;text-shadow:2px 2px 0 #fffc,3px 4px 3px #63412644}#jenny-origin{top:438px;left:225px;width:370px;color:#855d4b;font-size:24px;letter-spacing:5px}
+#two-souls{top:579px;font-size:25px;line-height:1.75;font-family:'Times New Roman',serif}#gujarat-label{top:827px;left:155px;width:345px;font-size:91px;color:#a47655;text-shadow:2px 2px 0 #fff,3px 4px 3px #63412644}#priyansh-origin{top:926px;left:175px;width:320px;color:#855d4b;font-size:23px;letter-spacing:4px}
+.monogram{position:absolute;left:145px;top:283px;width:430px;height:345px;opacity:0}.brand-mark,.brand-sprig{position:absolute;display:block;object-fit:contain;filter:grayscale(1) sepia(1) hue-rotate(30deg) saturate(.65) brightness(.98) contrast(.87);mix-blend-mode:multiply}.brand-mark{left:17%;top:0;width:66%;height:100%}.brand-sprig{width:18%;height:auto;transform-origin:50% 95%;opacity:0}.brand-left{left:6%;top:48%}.brand-right{right:6%;top:51%}#closing-monogram .brand-mark,#closing-monogram .brand-sprig{filter:grayscale(1) sepia(.9) saturate(.7) brightness(1.8) contrast(.8);mix-blend-mode:screen}
+#couple-name{top:640px;color:#b93859;font-size:68px;letter-spacing:-2px;line-height:1.1}#forever{top:755px;font-size:21px;font-weight:400;color:#443039}#hashtag{top:802px;font-size:27px;color:#b93859}
+#identity .sky-route{position:absolute;top:115px;left:0;width:720px;height:120px}
+#wedding{background:radial-gradient(ellipse at 50% 30%,#fff8f8,#f4e3e6 75%)}.mandap{left:0;top:475px;width:720px;height:805px}.garlands-left{left:0;top:0;width:86px;height:345px;transform-origin:top}.garlands-right{right:0;top:0;width:107px;height:355px;transform-origin:top}
+#wedding-title{top:97px;font-size:79px;color:#b85c79;line-height:1.1}#wedding-date{top:199px;font-size:40px;color:#6d7040}#wedding-ceremonies{top:277px;font-size:29px;line-height:1.35;color:#6d7040}#wedding-blessings{top:362px;font-size:23px;color:#7c7653;font-style:italic}#wedding-venue{top:405px;font-size:28px;line-height:1.25;color:#6d7040}
+#sangeet{background:radial-gradient(ellipse at 50% 0,#70562a 0,#19140c 24%,#030303 52%)}.sangeet-top{top:0;left:0;width:720px;height:270px}.sangeet-bottom{top:640px;left:0;width:720px;height:640px}.sangeet-left{left:0;top:270px;width:155px;height:390px}.sangeet-right{right:0;top:270px;width:145px;height:390px}
+#sangeet-title{top:276px;font-size:51px;color:#fff4c9;line-height:1.1;font-family:Invitation,Georgia,serif;font-style:italic}#sangeet-label{top:350px;font-size:23px;color:#fff9e8}#sangeet-date{top:402px;font-size:35px;color:#fff9e8;font-style:italic}#sangeet-time{top:465px;font-size:30px;color:#fff9e8;font-style:italic}#sangeet-venue{top:533px;left:155px;width:410px;font-size:26px;color:#fff9e8;line-height:1.18}
+#closing{background:#01031f}#closing-bg{position:absolute;inset:0;width:720px;height:1280px}#closing-monogram{top:340px;left:202px;width:316px;height:247px}#closing-monogram .jp-letter{fill:#e3e9b7}#closing-monogram .monogram-path{stroke:#e3e9b7}#closing-name{top:588px;font-size:52px;color:#fffff1;letter-spacing:-1.2px}#closing-message{top:704px;font-family:'Times New Roman',serif;font-size:30px;font-style:italic;color:#fff;line-height:1.3}#closing-wish{top:813px;left:65px;width:590px;font-family:'Times New Roman',serif;font-size:28px;font-style:italic;color:#fff;line-height:1.4}
+.lantern{width:110px;height:auto;filter:drop-shadow(0 0 16px #ffb62c88);will-change:transform;z-index:1}.lantern.one{left:70px;top:1070px}.lantern.two{left:415px;top:1085px;width:95px}.lantern.three{left:600px;top:970px;width:67px}
+.floating-petal{position:absolute;width:18px;height:27px;border-radius:70% 10% 60% 30%;background:radial-gradient(ellipse at 35% 30%,#fff0ee,#e8abc0 75%,#ce7890);box-shadow:inset 1px 1px 2px #fff9;opacity:0;pointer-events:none}
+#sparkles,#transition{position:absolute;inset:0;width:720px;height:1280px;pointer-events:none}#sparkles{z-index:12}#transition{z-index:15}
+.controls{width:100%;max-width:370px;display:flex;gap:11px;align-items:center;height:28px}button{appearance:none;border:0;background:transparent;color:#52644d;cursor:pointer;flex-shrink:0;border-radius:30px;padding:5px;display:grid;place-items:center;height:29px;min-width:29px}button:hover{background:#7a93771a}button:focus-visible,input:focus-visible{outline:2px solid #718d69;outline-offset:3px}button svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}#progress{flex:1;min-width:25px;height:3px;accent-color:#8d9c75;cursor:pointer}#clock{font:9px system-ui,sans-serif;font-variant-numeric:tabular-nums;color:#78826f;white-space:nowrap}.chapters{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}.chapters button{font:9px system-ui,sans-serif;letter-spacing:.3px;padding:5px 10px;min-height:23px;height:23px;background:#ffffff50;border:1px solid #81957727}.chapters button.active{background:#6a7d61;color:white;border-color:transparent}.hint{font:9px system-ui,sans-serif;letter-spacing:.8px;color:#7a8671;min-height:11px}
+body.render{background:none;display:block;min-height:0}.render .viewer{padding:0;width:720px;gap:0}.render .heading,.render .controls,.render .chapters,.render .hint{display:none}.render .viewport{width:720px;height:1280px;box-shadow:none;outline:0}
+@media(max-width:500px){.viewer{padding:9px 10px;gap:9px}.viewport{width:min(100%,calc((100svh - 139px)*.5625))}.heading{font-size:9px;letter-spacing:1.6px;max-width:360px}.heading small{font-size:7px}.chapters{gap:4px}.chapters button{font-size:8px;padding:4px 8px}}
 </style>
 </head>
 <body>
-<main class="viewer" aria-label="Jenny and Priyansh animated wedding invitation">
- <header class="heading"><span>Jenny &amp; Priyansh</span><span>Save the date</span></header>
- <div class="viewport" id="viewport" role="img" aria-label="A red floral convertible travels down a palm-lined road, revealing Jenny and Priyansh's wedding invitation.">
-  <div id="stage">
-   <div class="scenery"></div>
-   <div id="script-mask"><div id="save-date"><span id="save-word">Save </span>the date</div></div>
-   <div id="date" class="copy"><div class="day" data-field="days">16TH</div><div class="month" data-field="month">FEB</div><div class="year" data-field="year">2026</div></div>
-   <div id="message" class="copy">With love in our hearts and our<br>favourite people by our side,<br>we’re ready to celebrate!</div>
-   <div id="bride" class="copy" data-field="bride">Jenny</div>
-   <div id="amp" class="copy">&amp;</div>
-   <div id="groom" class="copy" data-field="groom">Priyansh</div>
-   <div id="venue" class="copy"><span data-field="venue">Arawali Ananta Elite</span><br><span data-field="location">Ranakpur, Rajasthan</span></div>
-   <div id="closing" class="copy">FORMAL INVITATION TO FOLLOW</div>
-   <div id="heart" class="copy" aria-hidden="true">♥</div>
-   <img id="car" src="{{CAR}}" alt="Illustrated couple in a red floral vintage convertible" width="216" height="462">
+<main class="viewer">
+<header class="heading"><span>Jenny &amp; Priyansh</span><small>Two states · One forever</small></header>
+<div class="viewport" id="viewport" role="img" aria-label="Jenny from Rajasthan and Priyansh from Gujarat celebrate their wedding on 16 February 2026 at Arawali Ananta Elite, Ranakpur.">
+<div id="stage">
+ <section id="origins" class="scene" aria-label="Jenny from Rajasthan, Priyansh from Gujarat">
+  <div class="paper"></div><img class="hills" src="assets/hills.png" alt="Watercolor green hills">
+  <div id="origins-art">
+   <img class="state-map rajasthan-map" src="assets/rajasthan-map.svg" alt="Rajasthan state outline">
+   <img class="palace" src="assets/rajasthan-palace.png" alt="Rajasthan lakeside palace illustration">
+   <img class="state-map gujarat-map" src="assets/gujarat-map.svg" alt="Gujarat state outline">
+   <img class="temple" src="assets/gujarat-temple.png" alt="Gujarat temple illustration">
+   <svg class="route" viewBox="0 0 720 1280" aria-hidden="true"><defs><mask id="route-mask"><path id="route-reveal" d="M400 250 C145 350 47 600 209 852 S280 1030 420 1150" fill="none" stroke="white" stroke-width="5" stroke-dasharray="1350" stroke-dashoffset="1350"/></mask></defs><path d="M400 250 C145 350 47 600 209 852 S280 1030 420 1150" fill="none" stroke="#9c8b71" stroke-width="2.5" stroke-dasharray="11 8" mask="url(#route-mask)"/></svg>
+   <div id="rajasthan-label" class="line script">Rajasthan</div><div id="jenny-origin" class="line label" data-field="bride">Jenny</div>
+   <div id="two-souls" class="line">TWO SOULS, ONE PROMISE<br>A LIFETIME OF CHOOSING EACH OTHER</div>
+   <div id="gujarat-label" class="line script">Gujarat</div><div id="priyansh-origin" class="line label" data-field="groom">Priyansh</div>
   </div>
- </div>
- <div class="controls" aria-label="Playback controls">
-  <button id="play" aria-label="Pause invitation" title="Play / Pause (Space)"><svg viewBox="0 0 24 24"><path id="play-icon" d="M9 5v14M15 5v14"/></svg></button>
-  <button id="replay" aria-label="Replay from beginning" title="Replay"><svg viewBox="0 0 24 24"><path d="M4 9a8 8 0 1 1 0 7M4 3v6h6"/></svg></button>
-  <input class="progress" id="progress" type="range" min="0" max="11.533333" step="0.01" value="0" aria-label="Invitation timeline">
-  <span id="clock">0:00 / 0:12</span>
-  <button id="sound" aria-label="Turn music on" title="Music on / off"><svg viewBox="0 0 24 24"><path d="M11 4 6 8H3v8h3l5 4V4"/><path id="sound-icon" d="m16 9 5 6m0-6-5 6"/></svg></button>
- </div>
- <div class="hint" id="hint">Tap the speaker for music</div>
-</main>
-<audio id="music" preload="auto" src="{{AUDIO}}"></audio>
+ </section>
+ <section id="identity" class="scene" aria-label="Jenny and Priyansh wedding monogram">
+  <div class="paper"></div><img class="hills" src="assets/hills.png" alt=""><img class="left-leaves" src="assets/leaves-left.png" alt=""><img class="right-leaves" src="assets/leaves-right.png" alt="">
+  <svg class="sky-route" viewBox="0 0 720 120" aria-hidden="true"><path d="M-20 50 Q330 170 750 20" fill="none" stroke="#aa987d" stroke-width="2.5" stroke-dasharray="9 6"/></svg>
+  <div class="monogram" id="main-monogram"><img class="brand-mark" src="assets/logo-mark.webp" alt="Jenny and Priyansh floral JP logo"><img class="brand-sprig brand-left" src="assets/logo-left-sprig.webp" alt=""><img class="brand-sprig brand-right" src="assets/logo-right-sprig.webp" alt=""></div>
+  <div id="couple-name" class="line" data-field="couple">Jenny &amp; Priyansh</div><div id="forever" class="line">THE BEGINNING OF OUR FOREVER</div><div id="hashtag" class="line" data-field="hashtag">#JennyKiPriyansh</div>
+ </section>
+ <section id="wedding" class="scene" aria-label="Wedding vows on 16 February 2026">
+  <img class="mandap" src="assets/wedding-mandap.png" alt="Pink lotus mandap with an illustrated bride and groom"><img class="garlands-left" src="assets/garlands-left.png" alt=""><img class="garlands-right" src="assets/garlands-right.png" alt="">
+  <div id="wedding-title" class="line script">Wedding Vows</div><div id="wedding-date" class="line" data-field="weddingDate">16th February, 2026</div>
+  <div id="wedding-ceremonies" class="line">Barat Swagat — 6:00 pm to 7:00 pm<br>Shubh Phere — 11:00 pm</div><div id="wedding-blessings" class="line">With the blessings of our families</div>
+  <div id="wedding-venue" class="line"><span data-field="venue">Arawali Ananta Elite</span><br><span data-field="location">Ranakpur, Rajasthan</span></div>
+ </section>
+ <section id="sangeet" class="scene" aria-label="Sangeet on 15 February 2026, 7 pm onwards">
+  <img class="sangeet-top" src="assets/sangeet-lights.png" alt="Golden hanging lights"><img class="sangeet-left" src="assets/sangeet-left.png" alt=""><img class="sangeet-right" src="assets/sangeet-right.png" alt=""><img class="sangeet-bottom" src="assets/sangeet-couple.png" alt="Illustrated couple in a black and gold ballroom">
+  <div id="sangeet-title" class="line">love, lights &amp; lyrics</div><div id="sangeet-label" class="line">SANGEET</div><div id="sangeet-date" class="line" data-field="sangeetDate">15th February, 2026</div><div id="sangeet-time" class="line">7:00 pm onwards</div><div id="sangeet-venue" class="line">Venue:<br><span data-field="venue">Arawali Ananta Elite</span><br><span data-field="location">Ranakpur, Rajasthan</span></div>
+ </section>
+ <section id="closing" class="scene" aria-label="Join Jenny and Priyansh for their celebration">
+  <canvas id="closing-bg" width="720" height="1280"></canvas>
+  <img class="lantern one" src="assets/lantern.png" alt=""><img class="lantern two" src="assets/lantern.png" alt=""><img class="lantern three" src="assets/lantern.png" alt="">
+  <div class="monogram" id="closing-monogram"></div><div id="closing-name" class="line" data-field="couple">Jenny &amp; Priyansh</div>
+  <div id="closing-message" class="line">Your presence will make<br>our day even more special.</div><div id="closing-wish" class="line">Come celebrate love, laughter<br>and happily ever after with us.</div>
+ </section>
+ <canvas id="sparkles" width="720" height="1280"></canvas><canvas id="transition" width="720" height="1280"></canvas>
+</div></div>
+<div class="controls"><button id="play" aria-label="Pause invitation" title="Play / Pause"><svg viewBox="0 0 24 24"><path id="play-icon" d="M9 5v14M15 5v14"/></svg></button><button id="replay" aria-label="Replay invitation" title="Replay"><svg viewBox="0 0 24 24"><path d="M4 9a8 8 0 1 1 0 7M4 3v6h6"/></svg></button><input id="progress" type="range" min="0" max="50.958333" value="0" step=".01" aria-label="Invitation timeline"><span id="clock">0:00 / 0:51</span><button id="sound" aria-label="Turn music on" title="Music"><svg viewBox="0 0 24 24"><path d="M11 4 6 8H3v8h3l5 4V4"/><path id="sound-icon" d="m16 9 5 6m0-6-5 6"/></svg></button></div>
+<nav class="chapters" aria-label="Invitation scenes"><button data-time="0" class="active">Our roots</button><button data-time="14.5">Jenny &amp; Priyansh</button><button data-time="27">Wedding</button><button data-time="36.5">Sangeet</button><button data-time="46.5">With love</button></nav>
+<div class="hint" id="hint">Tap the speaker for music</div>
+</main><audio id="music" src="assets/reference-music.mp3" preload="auto"></audio>
 <script>
-// EDIT THESE DETAILS to personalise this invitation. The scenery and text remain separate layers.
-const DETAILS = {
- bride: 'Jenny', groom: 'Priyansh', days: '16TH', month: 'FEB', year: '2026',
- venue: 'Arawali Ananta Elite', location: 'Ranakpur, Rajasthan'
-};
-const DURATION=346/30;
-document.querySelectorAll('[data-field]').forEach(el=>el.textContent=DETAILS[el.dataset.field]);
-document.title=`${DETAILS.bride} & ${DETAILS.groom} · Save the Date`;
-const stage=document.getElementById('stage'), viewport=document.getElementById('viewport'),
- music=document.getElementById('music'), progress=document.getElementById('progress'),
- play=document.getElementById('play'), car=document.getElementById('car');
-const fade=(t,start,len=.65)=>Math.max(0,Math.min(1,(t-start)/len));
-const cue=[['date',3.50,.65],['message',5.30,.60],['bride',6.0,.65],['amp',6.8,.55],['groom',7.40,.65],['venue',8.1,.65],['closing',8.8,.65],['heart',9.5,.60]];
-let time=0,playing=false,sound=false,previous=null;
-function resize(){stage.style.transform=`scale(${viewport.getBoundingClientRect().width/720})`}
-new ResizeObserver(resize).observe(viewport);
-function draw(t){
- time=Math.max(0,Math.min(DURATION,t));
- const y=-43+125*time;
- car.style.transform=`translate3d(0,${y}px,0)`;
- const script=document.getElementById('script-mask');
- script.style.clipPath=`inset(${Math.max(0,y+466)}px 0px 0px 0px)`;
- script.style.opacity=fade(time,0,.24)*(1-fade(time,4.2,.9));
- document.getElementById('save-word').style.opacity=1-fade(time,.28,.6);
- cue.forEach(([id,start,len])=>document.getElementById(id).style.opacity=fade(time,start,len));
- progress.value=time;
- document.getElementById('clock').textContent=`0:${String(Math.floor(time)).padStart(2,'0')} / 0:12`;
-}
-function syncAudio(){if(sound){music.currentTime=Math.min(time,music.duration||DURATION);if(playing)music.play().catch(()=>{document.getElementById('hint').textContent='Tap the speaker to start music'})}}
-function updateButton(){play.setAttribute('aria-label',playing?'Pause invitation':'Play invitation');document.getElementById('play-icon').setAttribute('d',playing?'M9 5v14M15 5v14':'m8 4 12 8-12 8Z')}
-function setPlaying(value){playing=value;previous=null;updateButton();if(playing)syncAudio();else music.pause()}
-function seek(t){draw(t);previous=null;syncAudio()}
-function tick(now){if(playing){if(previous!==null)draw(time+(now-previous)/1000);previous=now;if(time>=DURATION)setPlaying(false)}requestAnimationFrame(tick)}
-play.addEventListener('click',()=>{if(time>=DURATION)seek(0);setPlaying(!playing)});
-document.getElementById('replay').addEventListener('click',()=>{seek(0);setPlaying(true)});
-progress.addEventListener('input',()=>seek(Number(progress.value)));
-document.getElementById('sound').addEventListener('click',()=>{sound=!sound;music.muted=!sound;document.getElementById('sound-icon').setAttribute('d',sound?'M16 7q7 5 0 10M16 10q3 2 0 4':'m16 9 5 6m0-6-5 6');document.getElementById('sound').setAttribute('aria-label',sound?'Turn music off':'Turn music on');document.getElementById('hint').textContent=sound?'Jenny & Priyansh · 16 February 2026':'Tap the speaker for music';if(sound)syncAudio();else music.pause()});
-document.addEventListener('keydown',e=>{if(e.target.matches('input,button'))return;if(e.code==='Space'){e.preventDefault();play.click()}if(e.code==='ArrowRight')seek(time+.5);if(e.code==='ArrowLeft')seek(time-.5)});
-document.addEventListener('visibilitychange',()=>{if(document.hidden&&playing)setPlaying(false)});
-window.__getDuration=()=>DURATION;
-window.__seekTo=t=>{setPlaying(false);draw(t)};
-window.__invite={details:DETAILS,duration:DURATION,seek:window.__seekTo,play:()=>setPlaying(true),pause:()=>setPlaying(false)};
-const params=new URLSearchParams(location.search);
-if(params.has('render')){document.body.classList.add('render');draw(Number(params.get('t'))||0)}else{draw(0);if(matchMedia('(prefers-reduced-motion: reduce)').matches)draw(DURATION);else setPlaying(true)}
-resize();requestAnimationFrame(tick);
+const DETAILS={bride:'Jenny',groom:'Priyansh',brideState:'Rajasthan',groomState:'Gujarat',couple:'Jenny & Priyansh',weddingDate:'16th February, 2026',sangeetDate:'15th February, 2026',venue:'Arawali Ananta Elite',location:'Ranakpur, Rajasthan',hashtag:'#JennyKiPriyansh'};
+document.querySelectorAll('[data-field]').forEach(e=>e.textContent=DETAILS[e.dataset.field]);
+document.getElementById('rajasthan-label').textContent=DETAILS.brideState;document.getElementById('gujarat-label').textContent=DETAILS.groomState;
+document.getElementById('closing-monogram').innerHTML=document.getElementById('main-monogram').innerHTML;
+const DUR=1223/24,$=id=>document.getElementById(id),clamp=(n,a=0,b=1)=>Math.max(a,Math.min(b,n)),fade=(t,s,d=.7)=>clamp((t-s)/d),smooth=x=>x*x*(3-2*x),opacity=(id,n)=>$(id).style.opacity=clamp(n);
+const music=$('music'),progress=$('progress'),stage=$('stage'),viewport=$('viewport');let time=0,playing=false,sound=false,last=null;
+const timings={origins:[.083,.6,8.9,1.0],identity:[9.1,.9,22.05,1.1],wedding:[22.708,.95,31.9,1.1],sangeet:[32.292,1.1,41.35,.9],closing:[41.333,1.0,52,1]};
+const cues=[['rajasthan-label',1.0,.9],['jenny-origin',1.7,.8],['gujarat-label',3.05,.9],['priyansh-origin',3.7,.8],['two-souls',4.3,1],['main-monogram',11,2.5],['couple-name',14.0,1.0],['forever',16,1],['hashtag',18,1],['wedding-title',23.55,.8],['wedding-date',24.6,.8],['wedding-ceremonies',25.5,1.1],['wedding-blessings',26.5,.8],['wedding-venue',27.1,1],['sangeet-title',33.5,.8],['sangeet-label',34.3,.7],['sangeet-date',35.0,.7],['sangeet-time',35.8,.7],['sangeet-venue',36.5,.9],['closing-monogram',41.9,1],['closing-name',42.3,.9],['closing-message',43.6,1],['closing-wish',45.1,1.2]];
+const chapterStarts=[0,9.5,22.708,32.292,41.333];
+const petals=[];for(let i=0;i<22;i++){const p=document.createElement('i');p.className='floating-petal';p.setAttribute('aria-hidden','true');$('wedding').appendChild(p);petals.push(p)}
+const spark=$('sparkles').getContext('2d'),night=$('closing-bg').getContext('2d'),transition=$('transition').getContext('2d');
+function burst(ctx,x,y,age,seed=0){if(age<0||age>2.8)return;const n=48;for(let i=0;i<n;i++){const a=i/n*Math.PI*2+seed;const v=40+(i*37%70);const px=x+Math.cos(a)*v*age,py=y+Math.sin(a)*v*age+age*age*22;ctx.globalAlpha=clamp((1-age/2.8)*(.7+.3*Math.sin(i*7)));ctx.strokeStyle=i%3?'#efccde':'#fff9df';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(px-Math.cos(a)*5,py-Math.sin(a)*5);ctx.lineTo(px,py);ctx.stroke();ctx.fillStyle='#fff';ctx.fillRect(px,py,1.7,1.7)}ctx.globalAlpha=1}
+function drawNight(t){night.fillStyle='#01031e';night.fillRect(0,0,720,1280);for(let j=0;j<5;j++){const x=160+Math.sin(t*.22+j*2.3)*310,y=270+j*230+Math.sin(t*.3+j)*115;const g=night.createRadialGradient(x,y,0,x,y,260);g.addColorStop(0,j%2?'#0719a9cc':'#0b157ecc');g.addColorStop(.5,'#06125177');g.addColorStop(1,'#00000000');night.fillStyle=g;night.fillRect(0,0,720,1280)}for(let j=0;j<3;j++){const x=200+j*190+Math.sin(t*.5+j)*85,y=330+j*330+Math.cos(t*.3+j)*100;const g=night.createRadialGradient(x,y,0,x,y,65);g.addColorStop(0,'#0984ce6b');g.addColorStop(1,'#03094800');night.fillStyle=g;night.fillRect(x-65,y-65,130,130)}burst(night,600,140,(t+.7)%3.5,.4);burst(night,270,1090,(t+2.2)%4.1,1.7);for(let i=0;i<65;i++){const x=(i*127.3+Math.sin(t*.2+i)*12)%720,y=(i*73.7-t*6+12800)%1280;night.globalAlpha=(.2+.6*Math.pow(Math.sin(t*1.3+i),4));night.fillStyle='#fff9de';night.beginPath();night.arc(x,y,i%5===0?1.9:.9,0,7);night.fill()}night.globalAlpha=1}
+function effects(t){spark.clearRect(0,0,720,1280);if(t>23&&t<33){const u=t-23;petals.forEach((p,i)=>{const f=(u*.18+i*.137)%1,x=(i*137)%740+Math.sin(u+i)*28,y=f*1520-170;p.style.transform=`translate(${x}px,${y}px) rotate(${u*33+i*47}deg) scale(${.6+(i%4)*.2})`;p.style.opacity=.6*fade(t,23.4,.8)})}if(t>33&&t<42.3){const a=fade(t,33.3,1)*(1-fade(t,41.35,.8));for(let i=0;i<160;i++){const f=(t*.65+i*.173)%1,side=i%2,x=side?685:35,up=f*390;const px=x+(Math.sin(i*7)*62)*f,py=1210-up+up*f*.2;spark.globalAlpha=(1-f)*a;spark.fillStyle=i%3?'#ffe7a1':'#fff';spark.fillRect(px,py,i%5===0?2.2:1,3+f*2)}for(let i=0;i<45;i++){spark.globalAlpha=(.15+.75*Math.pow(Math.sin(t*2+i*1.9),12))*a;spark.fillStyle='#fff2b9';const x=(i*127)%720,y=(i*73)%300;spark.fillRect(x,y,1.5,4)}}spark.globalAlpha=1;transition.clearRect(0,0,720,1280);const smoke=Math.max(0,1-Math.abs(t-32.35)/1.1);if(smoke>0){for(let i=0;i<9;i++){const x=(i*183)%850-60,y=1100-i*120+(t-32.3)*-160;const g=transition.createRadialGradient(x,y,0,x,y,260);g.addColorStop(0,`rgba(255,255,255,${smoke*.9})`);g.addColorStop(1,'rgba(255,255,255,0)');transition.fillStyle=g;transition.fillRect(x-260,y-260,520,520)}}}
+function growLogo(id,t,start){const box=$(id),p=smooth(fade(t,start,1.5));box.querySelector('.brand-mark').style.opacity=fade(t,start,.9);box.querySelectorAll('.brand-sprig').forEach((e,i)=>{const f=smooth(fade(t,start+.35+i*.18,1.4));e.style.opacity=f;e.style.clipPath=`inset(${(1-f)*95}% 0 0)`;e.style.transform=`rotate(${(i?-12:12)*(1-f)}deg) scale(${.7+.3*f})`});box.style.transform=`translateY(${(1-p)*8}px) scale(${.97+.03*p})`}
+function draw(t){time=clamp(t,0,DUR);for(const [id,[start,inside,end,out]]of Object.entries(timings))opacity(id,fade(time,start,inside)*(1-fade(time,end,out)));for(const [id,start,d]of cues)opacity(id,fade(time,start,d));const shift=smooth(fade(time,8.65,1.6));$('origins-art').style.transform=`translateX(${-820*shift}px)`;$('route-reveal').style.strokeDashoffset=1350*(1-fade(time,5.8,2.5));growLogo('main-monogram',time,11);growLogo('closing-monogram',time,41.9);document.querySelectorAll('.garlands-left,.garlands-right').forEach((e,i)=>e.style.transform=`rotate(${Math.sin((time-23)*.9+i)*1.15}deg)`);if(time>40.5){drawNight(time-41.33);document.querySelectorAll('.lantern').forEach((e,i)=>{const u=time-41.33;e.style.transform=`translate(${Math.sin(u*.3+i)*35}px,${-u*(11+i*3)}px) rotate(${Math.sin(u*.4+i)*12}deg)`})}effects(time);progress.value=time;$('clock').textContent=`0:${String(Math.floor(time)).padStart(2,'0')} / 0:51`;let ch=0;chapterStarts.forEach((n,i)=>{if(time>=n)ch=i});document.querySelectorAll('.chapters button').forEach((e,i)=>e.classList.toggle('active',i===ch))}
+function resize(){stage.style.transform=`scale(${viewport.getBoundingClientRect().width/720})`}new ResizeObserver(resize).observe(viewport);
+function syncAudio(){if(sound){music.currentTime=Math.min(time,music.duration||DUR);if(playing)music.play().catch(()=>{$('hint').textContent='Tap the speaker to start music'})}}
+function setPlaying(value){playing=value;last=null;$('play-icon').setAttribute('d',playing?'M9 5v14M15 5v14':'m8 4 12 8-12 8Z');$('play').setAttribute('aria-label',playing?'Pause invitation':'Play invitation');if(playing)syncAudio();else music.pause()}
+function seek(t){draw(t);last=null;syncAudio()}
+function tick(now){if(playing){if(last!==null)draw(time+(now-last)/1000);last=now;if(time>=DUR)setPlaying(false)}requestAnimationFrame(tick)}
+$('play').onclick=()=>{if(time>=DUR)seek(0);setPlaying(!playing)};$('replay').onclick=()=>{seek(0);setPlaying(true)};progress.oninput=()=>seek(Number(progress.value));document.querySelectorAll('.chapters button').forEach(e=>e.onclick=()=>{seek(Number(e.dataset.time));setPlaying(true)});
+$('sound').onclick=()=>{sound=!sound;music.muted=!sound;$('sound-icon').setAttribute('d',sound?'M16 7q7 5 0 10M16 10q3 2 0 4':'m16 9 5 6m0-6-5 6');$('sound').setAttribute('aria-label',sound?'Turn music off':'Turn music on');$('hint').textContent=sound?'Jenny · Rajasthan  ×  Priyansh · Gujarat':'Tap the speaker for music';if(sound)syncAudio();else music.pause()};
+document.onkeydown=e=>{if(e.target.matches('button,input'))return;if(e.code==='Space'){e.preventDefault();$('play').click()}if(e.code==='ArrowRight')seek(time+1);if(e.code==='ArrowLeft')seek(time-1)};document.addEventListener('visibilitychange',()=>{if(document.hidden&&playing)setPlaying(false)});
+window.__getDuration=()=>DUR;window.__seekTo=t=>{setPlaying(false);draw(t)};window.__invite={details:DETAILS,seek:window.__seekTo,duration:DUR,play:()=>setPlaying(true),pause:()=>setPlaying(false)};
+const params=new URLSearchParams(location.search);if(params.has('render')){document.body.classList.add('render');draw(Number(params.get('t'))||0)}else{draw(.1);if(matchMedia('(prefers-reduced-motion:reduce)').matches)draw(17);else setPlaying(true)}resize();requestAnimationFrame(tick);
 </script>
-</body>
-</html>
+</body></html>

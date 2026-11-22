@@ -1,0 +1,4 @@
+State silhouettes: geoBoundaries gbOpen IND ADM1, 2011.
+License: Creative Commons Attribution 2.5 India.
+Source: https://www.geoboundaries.org/api/current/gbOpen/IND/ADM1/
+Geometry: https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/IND/ADM1/geoBoundaries-IND-ADM1_simplified.geojson
