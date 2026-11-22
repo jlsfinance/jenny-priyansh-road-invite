@@ -8,8 +8,6 @@
 <style>
 @font-face{font-family:Invitation;src:url('{{SERIF}}') format('truetype');font-weight:300 700;font-display:block}
 @font-face{font-family:Signature;src:url('{{SCRIPT}}') format('truetype');font-display:block}
-@font-face{font-family:'Google Sans';src:url('{{GOOGLE400}}') format('truetype');font-weight:400;font-display:block}
-@font-face{font-family:'Google Sans';src:url('{{GOOGLE500}}') format('truetype');font-weight:500 700;font-display:block}
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#101a15;color:#fff9ea}body{font-family:system-ui,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100svh;background:radial-gradient(ellipse at 50% 35%,#28372b,#101a15 75%)}
 .viewer{width:min(100%,500px);padding:16px 18px 18px;display:flex;align-items:center;flex-direction:column;gap:13px}
 .heading{width:100%;display:flex;justify-content:space-between;align-items:center;color:#d5cdb7;font-size:10px;letter-spacing:2.2px;text-transform:uppercase}.heading span:last-child{font-size:9px;opacity:.55;letter-spacing:1.8px}
@@ -24,11 +22,6 @@
 #message{top:532px;font-family:'Times New Roman',serif;font-style:italic;font-size:23px;line-height:25.5px;font-weight:bold;left:201px;width:326px;letter-spacing:-.3px}
 #bride{top:653px;font-size:65px;line-height:1.05;text-transform:uppercase}#amp{top:726px;font-size:65px;line-height:1.05;font-style:italic}#groom{top:799px;font-size:65px;line-height:1.05;text-transform:uppercase;letter-spacing:-1px}
 #venue{top:893px;font-size:18.5px;line-height:25px;font-weight:600;letter-spacing:.1px;text-transform:uppercase}#closing{top:970px;font-size:17px;line-height:24px;font-weight:600;white-space:nowrap;letter-spacing:.05px}#heart{top:1015px;font-family:Georgia,serif;font-size:43px;line-height:1}
-.copy{font-family:'Google Sans',sans-serif;font-weight:400}
-#date{font-weight:400;line-height:1.02}#date .day{font-size:56px;letter-spacing:-2.5px}#date .month{font-size:59px}#date .year{font-size:63px}
-#message{font-family:'Google Sans',sans-serif;font-style:normal;font-size:19px;line-height:26px;font-weight:400;letter-spacing:-.55px}
-#bride,#groom{font-size:54px;letter-spacing:-1.5px}#amp{font-size:49px;font-style:normal}
-#venue{font-size:16px;line-height:24px;font-weight:400;letter-spacing:-.15px}#closing{font-size:14.5px;font-weight:400;letter-spacing:0}
 .controls{width:100%;max-width:360px;display:flex;gap:14px;align-items:center;height:30px}button{appearance:none;border:0;background:transparent;color:#eee4cf;cursor:pointer;border-radius:50%;width:30px;height:30px;display:grid;place-items:center;padding:5px;flex-shrink:0}button:hover{background:#ffffff13}button:focus-visible,input:focus-visible{outline:2px solid #d9bd80;outline-offset:4px}button svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}.progress{flex:1;min-width:30px;accent-color:#d4bc89;height:3px;cursor:pointer}#clock{font-size:9px;font-variant-numeric:tabular-nums;letter-spacing:.6px;color:#b8b09b;min-width:49px;white-space:nowrap}.hint{font-size:9px;color:#a6a38e;letter-spacing:1px;min-height:12px;margin-top:-8px}
 body.render{background:none;display:block;min-height:0}.render .viewer{padding:0;width:720px;gap:0}.render .heading,.render .controls,.render .hint{display:none}.render .viewport{width:720px;height:1280px;box-shadow:none;outline:0}
 @media(max-width:500px){.viewer{padding:10px 12px 12px;gap:10px}.viewport{width:min(100%,calc((100svh - 105px)*.5625))}.heading{max-width:360px;font-size:9px}.heading span:last-child{font-size:8px}.controls{gap:10px}}
@@ -42,7 +35,7 @@ body.render{background:none;display:block;min-height:0}.render .viewer{padding:0
   <div id="stage">
    <div class="scenery"></div>
    <div id="script-mask"><div id="save-date"><span id="save-word">Save </span>the date</div></div>
-   <div id="date" class="copy"><div class="day" data-field="days">15TH–16TH</div><div class="month" data-field="month">FEB</div><div class="year" data-field="year">2026</div></div>
+   <div id="date" class="copy"><div class="day" data-field="days">16TH</div><div class="month" data-field="month">FEB</div><div class="year" data-field="year">2026</div></div>
    <div id="message" class="copy">With love in our hearts and our<br>favourite people by our side,<br>we’re ready to celebrate!</div>
    <div id="bride" class="copy" data-field="bride">Jenny</div>
    <div id="amp" class="copy">&amp;</div>
@@ -66,7 +59,7 @@ body.render{background:none;display:block;min-height:0}.render .viewer{padding:0
 <script>
 // EDIT THESE DETAILS to personalise this invitation. The scenery and text remain separate layers.
 const DETAILS = {
- bride: 'Jenny', groom: 'Priyansh', days: '15TH–16TH', month: 'FEB', year: '2026',
+ bride: 'Jenny', groom: 'Priyansh', days: '16TH', month: 'FEB', year: '2026',
  venue: 'Arawali Ananta Elite', location: 'Ranakpur, Rajasthan'
 };
 const DURATION=346/30;
@@ -100,7 +93,7 @@ function tick(now){if(playing){if(previous!==null)draw(time+(now-previous)/1000)
 play.addEventListener('click',()=>{if(time>=DURATION)seek(0);setPlaying(!playing)});
 document.getElementById('replay').addEventListener('click',()=>{seek(0);setPlaying(true)});
 progress.addEventListener('input',()=>seek(Number(progress.value)));
-document.getElementById('sound').addEventListener('click',()=>{sound=!sound;music.muted=!sound;document.getElementById('sound-icon').setAttribute('d',sound?'M16 7q7 5 0 10M16 10q3 2 0 4':'m16 9 5 6m0-6-5 6');document.getElementById('sound').setAttribute('aria-label',sound?'Turn music off':'Turn music on');document.getElementById('hint').textContent=sound?'Jenny & Priyansh · 15–16 February 2026':'Tap the speaker for music';if(sound)syncAudio();else music.pause()});
+document.getElementById('sound').addEventListener('click',()=>{sound=!sound;music.muted=!sound;document.getElementById('sound-icon').setAttribute('d',sound?'M16 7q7 5 0 10M16 10q3 2 0 4':'m16 9 5 6m0-6-5 6');document.getElementById('sound').setAttribute('aria-label',sound?'Turn music off':'Turn music on');document.getElementById('hint').textContent=sound?'Jenny & Priyansh · 16 February 2026':'Tap the speaker for music';if(sound)syncAudio();else music.pause()});
 document.addEventListener('keydown',e=>{if(e.target.matches('input,button'))return;if(e.code==='Space'){e.preventDefault();play.click()}if(e.code==='ArrowRight')seek(time+.5);if(e.code==='ArrowLeft')seek(time-.5)});
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&playing)setPlaying(false)});
 window.__getDuration=()=>DURATION;

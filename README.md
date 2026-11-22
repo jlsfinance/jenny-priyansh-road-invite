@@ -1,10 +1,10 @@
 # Jenny & Priyansh — palm road invitation
 
-Open `index.html` in Chrome or Edge. It is a portable, self-contained HTML file: artwork, Google Sans, the script font and reference audio are embedded. Playback starts silently; tap the speaker to enable music. Replay and timeline controls are below the invitation. No server or installation is required.
+Open `index.html` in Chrome or Edge. It is a portable, self-contained HTML file: artwork, the serif and script fonts, and reference audio are embedded. Playback starts silently; tap the speaker to enable music. Replay and timeline controls are below the invitation. No server or installation is required.
 
-Details used from the existing `jenny-priyansh-invite/timeline.js`: Jenny & Priyansh; 15–16 February 2026; Arawali Ananta Elite, Ranakpur, Rajasthan. These dates were preserved as supplied, even though they are in the past.
+Invitation details: Jenny & Priyansh; 16 February 2026; Arawali Ananta Elite, Ranakpur, Rajasthan.
 
-“Save the date” retains calligraphy. Subsequent dates, invitation copy, names and venue use Google Sans, as requested. The passengers remain the reference's illustrated couple; they are not photographs of Jenny and Priyansh.
+“Save the date” retains calligraphy. Dates, names and venue use the original recreation's Cormorant Garamond serif styling, with an italic serif invitation message. The passengers remain the reference's illustrated couple; they are not photographs of Jenny and Priyansh.
 
 ## Editable source
 

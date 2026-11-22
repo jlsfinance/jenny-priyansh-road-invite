@@ -5,8 +5,6 @@ const sources = {
   CAR: ['red-car.png', 'image/png'],
   SERIF: ['serif.ttf', 'font/ttf'],
   SCRIPT: ['script.ttf', 'font/ttf'],
-  GOOGLE400: ['google-sans-400.ttf', 'font/ttf'],
-  GOOGLE500: ['google-sans-500.ttf', 'font/ttf'],
   AUDIO: ['reference-audio.mp3', 'audio/mpeg']
 };
 let html = await readFile(new URL('template.html', root), 'utf8');
