@@ -57,7 +57,11 @@
     }
   ],
   "moving": {
-    "time": 8.0072,
+    "time": 7.9423,
+    "playing": true
+  },
+  "loop": {
+    "time": 0.6649,
     "playing": true
   },
   "mobile": {

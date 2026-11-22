@@ -22,7 +22,10 @@ ref=cv2.imread(str(ROOT/'analysis'/'frame-12.png'))
 boxes={'jenny':(94,548,190,244),'priyansh':(448,502,183,230)}
 templates={name:cv2.cvtColor(ref[y:y+h,x:x+w],cv2.COLOR_BGR2GRAY) for name,(x,y,w,h) in boxes.items()}
 cap=cv2.VideoCapture(VIDEO);tracks=[];frame_id=0
+tracking_cache=OUT/'tracking-raw.json'
+if tracking_cache.exists():tracks=json.loads(tracking_cache.read_text(encoding='utf8'))
 while True:
+ if len(tracks)==420:break
  ok,frame=cap.read()
  if not ok:break
  gray=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
@@ -41,15 +44,13 @@ for n in range(4,14):
 print('Entrance tracking:',json.dumps([{'f':i,**tracks[i]} for i in range(0,24,2)]),flush=True)
 (OUT/'tracking-raw.json').write_text(json.dumps(tracks),encoding='utf8')
 
-def getframe(n):
- c=cv2.VideoCapture(VIDEO);c.set(cv2.CAP_PROP_POS_FRAMES,n);ok,f=c.read();c.release();assert ok;return f
-protos={}
-for name,(bx,by,w,h) in boxes.items():
- protos[name]=[]
- for n in [30,90,200]:
-  f=getframe(n);x=tracks[n][name]['x'];y=tracks[n][name]['y'];crop=f[y:y+h,x:x+w]
-  face=cv2.cvtColor(crop,cv2.COLOR_BGR2GRAY)
-  protos[name].append(face.astype(np.float32))
+# Explicit beats avoid the old classifier holding surprise for the last 7.5s.
+expression_beats={
+ 'jenny':[(0,0),(1.1,1),(1.5,0),(2.5,2),(3.3,0),(4.4,1),(4.8,0),(5.7,2),(6.6,0),(7.8,1),(8.2,2),(9.1,0),(10.2,1),(10.6,0),(11.7,2),(12.6,0),(13.3,2)],
+ 'priyansh':[(0,0),(1.7,1),(2.1,0),(3.1,2),(3.9,0),(5.0,1),(5.4,0),(6.3,2),(7.1,0),(8.4,1),(8.8,0),(9.5,2),(10.3,0),(11.1,1),(11.5,0),(12.1,2),(12.8,0)]
+}
+def expression_at(name,t):
+ return next(state for start,state in reversed(expression_beats[name]) if t>=start)
 
 background=Image.open(ROOT/'analysis'/'frame-0.png').convert('RGB')
 cap=cv2.VideoCapture(VIDEO)
@@ -67,26 +68,24 @@ try:
    # Match the original head silhouette; replace the underlying pixels with its clean backdrop.
    poly=[(.16,.03),(.48,-.02),(.84,.02),(1.06,.23),(1.06,.86),(.75,.96),(.22,.96),(-.02,.84),(-.03,.29)] if name=='jenny' else [(.12,.02),(.49,-.02),(.9,.04),(1.03,.28),(1.01,.65),(.85,.81),(.61,.91),(.35,.91),(.04,.79),(-.03,.30)]
    draw.polygon([(int(x+px*w),int(y+py*h)) for px,py in poly],fill=255)
-   if x>=0 and x+w<=720:
-    face=cv2.cvtColor(f[y:y+h,x:x+w],cv2.COLOR_BGR2GRAY).astype(np.float32)
-    eyes=(slice(int(h*.30),int(h*.49)),slice(int(w*.20),int(w*.88)))
-    mouth=(slice(int(h*.56),int(h*.78)),slice(int(w*.30),int(w*.78)))
-    eye_errors=[float(np.mean((face[eyes]-p[eyes])**2)) for p in protos[name]]
-    mouth_errors=[float(np.mean((face[mouth]-p[mouth])**2)) for p in protos[name]]
-    state=2 if n>=195 and mouth_errors[2]<mouth_errors[0]*.83 else 1 if eye_errors[1]<eye_errors[0]*.8 else 0
-   else:state=0
+   state=expression_at(name,n/30)
    frame_states[name]={'visible':True,'x':x,'y':y,'w':w,'h':h,'state':state,'score':score}
   mask=mask.filter(ImageFilter.GaussianBlur(1.0));canvas.paste(background,(0,0),mask)
   for name,d in frame_states.items():
    if not d['visible']:continue
    # Keep the neck attached while reducing the oversized photographic head.
-   scale=.68
-   width=round((d['w']+8)*scale);height=round((d['h']+5)*scale)
-   im=sprites[name][d['state']].resize((width,height),Image.Resampling.LANCZOS)
+   source=sprites[name][d['state']]
+   # Trim transparent margins per expression and preserve natural head proportions.
+   alpha=np.asarray(source.getchannel('A'))>160
+   ys=np.flatnonzero(alpha.sum(axis=1)>12);xs=np.flatnonzero(alpha.sum(axis=0)>12)
+   source=source.crop((int(xs[0]),int(ys[0]),int(xs[-1])+1,int(ys[-1])+1))
+   height=round((d['h']+5)*(.60 if name=='jenny' else .64))
+   width=round(height*source.width/source.height)
+   im=source.resize((width,height),Image.Resampling.LANCZOS)
    # Align the chin to each costume's neckline, rather than to its hair bounds.
    neck_offset=5 if name=='jenny' else -9
    left=round(d['x']+d['w']/2-width/2+neck_offset)
-   top=round(d['y']+d['h']+4-height)
+   top=round(d['y']+d['h']-2-height)
    canvas.paste(im,(left,top),im)
   states.append(frame_states)
   if n in [6,9,12,18,30,90,150,200,225,270,330,390]:

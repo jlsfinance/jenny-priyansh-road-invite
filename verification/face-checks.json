@@ -1,0 +1,18 @@
+{
+  "jenny": {
+    "actualPixelDifferences": [
+      8.017034632034632,
+      14.437229437229437,
+      10.14599567099567
+    ],
+    "expressionTransitions": 16
+  },
+  "priyansh": {
+    "actualPixelDifferences": [
+      8.381645021645022,
+      14.025974025974026,
+      10.09943722943723
+    ],
+    "expressionTransitions": 16
+  }
+}
