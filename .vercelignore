@@ -1,0 +1,8 @@
+assets/
+template.html
+build.mjs
+build.py
+verify.cjs
+verification/
+README.md
+*.log

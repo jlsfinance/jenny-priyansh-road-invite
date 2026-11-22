@@ -1,0 +1,10 @@
+.vercel/
+node_modules/
+.env
+.env.*
+!.env.example
+verification/
+build.py
+verify.cjs
+*.log
+__pycache__/
