@@ -1,8 +1,7 @@
-assets/
-template.html
-build.mjs
-build.py
+.git
+.vercel
+verification
+*.py
 verify.cjs
-verification/
 README.md
-*.log
+

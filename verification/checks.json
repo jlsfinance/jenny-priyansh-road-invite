@@ -1,0 +1,69 @@
+{
+  "info": {
+    "details": {
+      "bride": "Jenny",
+      "groom": "Priyansh",
+      "month": "FEBRUARY 2026",
+      "day": 16,
+      "venue": "Arawali Ananta Elite · Ranakpur"
+    },
+    "duration": 14,
+    "title": "Jenny & Priyansh · Save the Date",
+    "finalDay": "16",
+    "finalMonth": "FEBRUARY 2026",
+    "crestLoaded": true,
+    "fonts": true
+  },
+  "frames": [
+    {
+      "t": 0.2,
+      "time": 0.2,
+      "ready": 4
+    },
+    {
+      "t": 0.6,
+      "time": 0.6,
+      "ready": 4
+    },
+    {
+      "t": 3.7,
+      "time": 3.7,
+      "ready": 4
+    },
+    {
+      "t": 5.5,
+      "time": 5.5,
+      "ready": 4
+    },
+    {
+      "t": 6.8,
+      "time": 6.8,
+      "ready": 4
+    },
+    {
+      "t": 8.35,
+      "time": 8.35,
+      "ready": 4
+    },
+    {
+      "t": 10.6,
+      "time": 10.6,
+      "ready": 4
+    },
+    {
+      "t": 12.8,
+      "time": 12.8,
+      "ready": 4
+    }
+  ],
+  "moving": {
+    "time": 7.8773,
+    "playing": true
+  },
+  "mobile": {
+    "overflow": false
+  },
+  "replay": true,
+  "music": "Turn music off",
+  "errors": []
+}

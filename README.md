@@ -1,25 +1,17 @@
-# Jenny & Priyansh — palm road invitation
+# Jenny & Priyansh — animated invitation
 
-Open `index.html` in Chrome or Edge. It is a portable, self-contained HTML file: artwork, the serif and script fonts, and reference audio are embedded. Playback starts silently; tap the speaker to enable music. Replay and timeline controls are below the invitation. No server or installation is required.
+Open `index.html` in a browser. It is a self-contained, 14-second portrait invitation with playback, seeking and optional music. Rebuild with `node build.mjs` after editing `template.html` or the assets.
 
-Invitation details: Jenny & Priyansh; 16 February 2026; Arawali Ananta Elite, Ranakpur, Rajasthan.
+Personalization: Jenny & Priyansh, authentic JP floral crest, 16 February 2026, Arawali Ananta Elite · Ranakpur. The photographic heads are 80% of the first version, anchored at the collar. Cartoon bodies, entrances, heart burst and birds retain motion extracted from the supplied reference.
 
-“Save the date” retains calligraphy. Dates, names and venue use the original recreation's Cormorant Garamond serif styling, with an italic serif invitation message. The passengers remain the reference's illustrated couple; they are not photographs of Jenny and Priyansh.
+The reference was examined at all 420 frames (720 × 1280, 30 fps). Source sheets and analysis remain in the local analysis folder. Browser verification checks eight animation times, continuous playback, names/date/logo/fonts, replay, music control and mobile overflow.
 
-## Editable source
+## Face asset provenance
 
-The `DETAILS` object in the HTML controls names, date and venue. Edit `template.html` and run `node build.mjs` to embed the included artwork, fonts and audio into `index.html`. No packages or API keys are needed. For browser screenshots, append `?render=1&t=10.8`. `window.__seekTo(seconds)` provides deterministic animation seeking.
+Identity references were the user's `jenny-priyansh-standing-portrait.jpg` and `jenny-priyansh-restaurant.jpg` from the existing invitation assets. Six transparent photographic head variants were produced with image generation: Jenny and Priyansh, each smiling, winking and surprised. These are AI-assisted identity-based expression variants, rather than untouched photograph crops.
 
-## Hosting
+Generation brief: use the two supplied couple photographs as identity references; create a transparent 3-column, 2-row sprite sheet of heads only; Jenny on the top row and Priyansh on the bottom; smiling, winking and surprised expressions; retain their facial identity, natural hair and Priyansh's beard; no bodies, text or decorations. Saved variants are `assets/jenny-{smile,wink,surprised}.png` and `assets/priyansh-{smile,wink,surprised}.png`.
 
-This is a static site. Vercel serves the committed `index.html` without a build step. GitHub pushes to `main` deploy through the connected Vercel project.
+`replace_faces.py` records the local reference and generated sheet paths, tracks the reference heads, restores the background beneath them and composites expression variants into the original body animation. It requires the original local inputs, Python, Pillow, OpenCV, NumPy and FFmpeg.
 
-## Reference analysis
-
-`rea-video survey`, `decompose`, `review` and `apply-review` were run. The source has 346 video frames at 30 fps (11.533 seconds), one continuous composition, and no scene cuts. Its audio container is slightly longer than its visible video.
-
-The recreation separates the palm scenery, road, car and editable typography. The car moves approximately 125 pixels/second down a fixed 720×1280 canvas. Approximate text entrances: date 3.5s; message 5.3s; Jenny 6.0s; ampersand 6.8s; Priyansh 7.4s; venue 8.1s; closing 8.8s; heart 9.5s. Fonts and fades are a reconstruction, not a claim of a pixel-identical source project.
-
-The automated rea-video classifier retained an AI-video label despite the visual review. The observed fixed foliage, unchanging car silhouette/passenger pose, and separate text fades support recreating this as a layered motion composition. Whether the original illustration itself was generated with AI is unverified. Soundtrack provenance and automatic SFX/voice guesses are unverified; the HTML preserves the supplied soundtrack instead of inventing replacements. Audio separation was skipped because no replacement soundtrack was needed.
-
-Browser verification covered desktop/mobile layout, font/image loading, timeline seeking, play/pause, replay and the music toggle. Local analysis inputs and verification captures are excluded from this repository.
+The supplied reference's paper illustration, costume/body artwork, bird/heart animation and music are reused. Their original authorship and music source were not identified by visual analysis.
