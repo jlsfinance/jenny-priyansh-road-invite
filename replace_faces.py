@@ -5,6 +5,7 @@ ROOT=Path(__file__).resolve().parent
 ASSETS=ROOT/'assets'; OUT=ROOT/'analysis'/'face-review';OUT.mkdir(parents=True,exist_ok=True)
 VIDEO=r'C:\Users\Admin\.codex\codex-remote-attachments\01a1f958-f61d-79e3-ad6f-412a6a0f06fe\940C43EF-ADDE-4D5C-8B18-B4C2D68EDB5C\1-Video-24639.mp4'
 SHEET=Path(r'C:\Users\Admin\.codex\generated_images\01a1f958-f61d-79e3-ad6f-412a6a0f06fe\exec-f94551c9-5ccc-4006-8e68-7b50d630d4fa.png')
+FIT_REFERENCE=Path(r'C:\Users\Admin\.codex\codex-remote-attachments\01a1f958-f61d-79e3-ad6f-412a6a0f06fe\E1255FF7-43E7-4454-ACD5-E4D2D3BB7AC3\1-Photo-1.jpg')
 sheet=Image.open(SHEET).convert('RGBA')
 sprites={}
 for row,name in enumerate(['jenny','priyansh']):
@@ -53,6 +54,20 @@ def expression_at(name,t):
  return next(state for start,state in reversed(expression_beats[name]) if t>=start)
 
 background=Image.open(ROOT/'analysis'/'frame-0.png').convert('RGB')
+
+# Take the neckline and collar together from the alignment photo so the neck
+# follows the actual U-shaped shirt opening. The face sprites are kept intact.
+fit_photo=Image.open(FIT_REFERENCE).convert('RGB')
+neck_box=(214,704,356,772)
+neckline=fit_photo.crop(neck_box)
+neck_alpha=Image.new('L',neckline.size)
+outline=[(253,705),(299,705),(304,717),(318,727),(335,725),
+         (345,733),(353,753),(349,765),(316,764),(248,760),
+         (245,750),(242,741),(233,734),(244,726),(248,721)]
+ImageDraw.Draw(neck_alpha).polygon([(x-neck_box[0],y-neck_box[1]) for x,y in outline],fill=255)
+neckline.putalpha(neck_alpha.filter(ImageFilter.GaussianBlur(2.0)))
+neckline=neckline.resize((122,57),Image.Resampling.LANCZOS)
+
 cap=cv2.VideoCapture(VIDEO)
 ff=subprocess.Popen(['ffmpeg','-hide_banner','-loglevel','error','-f','rawvideo','-pix_fmt','rgb24','-s','720x800','-r','30','-i','-','-an','-c:v','libx264','-preset','medium','-crf','20','-pix_fmt','yuv420p','-movflags','+faststart','-y',str(ASSETS/'personalized-couple.mp4')],stdin=subprocess.PIPE)
 diagnostics=[];states=[]
@@ -86,6 +101,17 @@ try:
    neck_offset=5 if name=='jenny' else -9
    left=round(d['x']+d['w']/2-width/2+neck_offset)
    top=round(d['y']+d['h']-2-height)
+   if name=='jenny':
+    top-=13
+    neck_left=round(left+width/2-54)
+    neck_top=round(d['y']+d['h']-32)
+    canvas.paste(neckline,(neck_left,neck_top),neckline)
+    # Fade only the very bottom of the sprite neck into the photographed collar.
+    # The face, jaw and hair retain their original pixels above this narrow join.
+    alpha=np.array(im.getchannel('A'),dtype=np.float32)
+    rows=np.clip((np.arange(height)-(height-9))/8,0,1)[:,None]
+    center=np.clip((.31-np.abs(np.arange(width)/width-.5))/.09,0,1)[None,:]
+    im.putalpha(Image.fromarray(np.round(alpha*(1-rows*center)).astype(np.uint8)))
    canvas.paste(im,(left,top),im)
   states.append(frame_states)
   if n in [6,9,12,18,30,90,150,200,225,270,330,390]:

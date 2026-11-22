@@ -1,18 +1,36 @@
 {
   "jenny": {
     "actualPixelDifferences": [
-      12.044437229437229,
-      16.413896103896104,
-      7.073571428571428
+      11.769025974025974,
+      15.088160173160173,
+      5.681168831168831
     ],
-    "expressionTransitions": 16
+    "expressionTransitions": 16,
+    "visibleNeckSamples": [
+      [
+        193,
+        134,
+        104
+      ],
+      [
+        193,
+        134,
+        104
+      ],
+      [
+        193,
+        135,
+        102
+      ]
+    ]
   },
   "priyansh": {
     "actualPixelDifferences": [
-      8.355,
-      13.993896103896104,
-      10.080627705627705
+      8.395670995670995,
+      14.028463203463204,
+      10.078549783549784
     ],
-    "expressionTransitions": 16
+    "expressionTransitions": 16,
+    "visibleNeckSamples": []
   }
 }
